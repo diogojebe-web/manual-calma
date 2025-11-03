@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manual do Emagrecimento Sustentável — Página Oficial</title>
+<style>
+  :root{
+    --turquoise:#2FD5C7;
+    --turquoise-ink:#005d56;
+    --turquoise-soft:#ECFFFC;
+    --pink:#F4A3B8;
+    --pink-ink:#7c2944;
+    --pink-soft:#FDF1F5;
+    --ink:#111827;
+    --muted:#6B7280;
+    --bg:#ffffff;
+    --bg-soft:#F9FAFB;
+    --grad: linear-gradient(135deg, #FADCE4 0%, #D6F9F6 100%);
+  }
+  *{box-sizing:border-box}
+  body{ margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif; color:var(--ink); background:var(--bg); }
+  img{max-width:100%; height:auto; display:block}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* Botões & util */
+  .btn{
+    display:inline-block; background:var(--turquoise); color:#003433; 
+    font-weight:700; padding:16px 22px; border-radius:12px; text-decoration:none;
+    box-shadow:0 8px 18px rgba(47,213,199,.25); transition:transform .08s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:0 12px 24px rgba(47,213,199,.35)}
+  .btn-pink{ background:var(--pink); color:#5b1030; box-shadow:0 8px 18px rgba(244,163,184,.25)}
+  .badge{display:inline-block; padding:.22rem .6rem; border-radius:999px; background:#E6FFFB; color:#06635d; font-weight:700; font-size:.78rem}
+  .eyebrow{color:var(--pink); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.85rem}
+  .muted{color:var(--muted)}
+  .small{font-size:.9rem}
+  .center{text-align:center}
+  .divider{height:1px; background:#EEF2F7; margin:22px 0}
+
+  /* HERO (sem vídeo) */
+  .hero{
+    background:var(--grad);
+    padding:48px 0 28px; border-bottom:1px solid #EEF2F7;
+  }
+  .hero-top{display:flex; align-items:center; gap:14px; margin-bottom:10px}
+  .logo{height:60px;width:auto}
+  h1{font-size:clamp(26px,4.6vw,44px); line-height:1.1; margin:10px 0}
+  .sub{color:#25313b; font-size:clamp(16px,2.6vw,20px); max-width:900px}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:18px; align-items:center; margin-top:18px}
+  .bullets{margin:12px 0 8px; display:grid; gap:10px}
+  .bullet{display:flex; gap:10px; align-items:flex-start; background:#ffffffc9; backdrop-filter:saturate(1.2) blur(2px);
+          border:1px solid #E7EEF5; padding:10px 12px; border-radius:12px}
+  .check{color:#0c6f67; font-weight:900}
+
+  .hero-cta{
+    display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+  }
+
+  /* Seções gerais */
+  .section{padding:36px 0}
+  .section.alt{background:var(--bg-soft)}
+
+  /* Grid genéricos / cards */
+  .grid-3{display:grid; grid-template-columns:1fr; gap:16px}
+  @media(min-width:720px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+  .card{background:#fff; border:1px solid #EEF2F7; border-radius:16px; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.04)}
+  .card-img{width:100%; aspect-ratio:16/9; object-fit:cover; background:#f0f0f0}
+  .card-body{padding:14px}
+  .kicker{color:#0b7d73; font-weight:700; font-size:.85rem; letter-spacing:.06em; text-transform:uppercase}
+
+  /* Listas */
+  .list{display:grid; gap:10px}
+  .li{display:flex; gap:10px}
+  .li::before{content:"•"; color:var(--turquoise); font-weight:900}
+
+  /* Blocos simples */
+  .blocks{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media(min-width:760px){ .blocks{ grid-template-columns:repeat(2,1fr) } }
+  @media(min-width:1040px){ .blocks{ grid-template-columns:repeat(3,1fr) } }
+  .block{
+    background:#fff; border:1px solid #E7EEF5; border-radius:14px;
+    padding:14px 16px; box-shadow:0 4px 14px rgba(0,0,0,.04);
+    display:flex; gap:10px; align-items:flex-start;
+  }
+  .block .emoji{ font-size:1.35rem; line-height:1; margin-top:2px; }
+  .block .t{ margin:0; color:var(--ink); }
+  .block .m{ margin:.2rem 0 0; color:var(--muted); font-size:.95rem; }
+  .block.good{ border-color:#7be9de; background:var(--turquoise-soft) }
+  .block.bad{ border-color:#f8c4d2; background:var(--pink-soft) }
+
+  /* “Você recebe” (cartões) */
+  .receive-grid{
+    display:grid; grid-template-columns:1fr; gap:14px; margin-top:10px;
+  }
+  @media(min-width:760px){ .receive-grid{ grid-template-columns:repeat(2,1fr) } }
+  @media(min-width:1080px){ .receive-grid{ grid-template-columns:repeat(3,1fr) } }
+  .receive-card{
+    background:#fff; border:1px solid #EEF2F7; border-radius:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,.05);
+    padding:14px; display:flex; gap:10px; align-items:flex-start;
+  }
+  .receive-icon{
+    flex:0 0 34px; height:34px; width:34px; display:grid; place-items:center;
+    border-radius:10px; background:var(--turquoise-soft); color:var(--turquoise-ink);
+    font-weight:900; border:1px solid #dff6f3; margin-top:2px;
+  }
+  .receive-text{ font-size:clamp(15px,2.4vw,17px); line-height:1.5 }
+
+  /* Comparação lado a lado */
+  .compare{ display:grid; grid-template-columns:1fr; gap:18px; }
+  @media(min-width:900px){ .compare{ grid-template-columns:1fr 1fr } }
+  .panel{ background:#fff; border:2px solid #e7eef5; border-radius:16px; overflow:hidden; }
+  .panel--bad{ background:var(--pink-soft); border-color:#F4A3B8 }
+  .panel--good{ background:var(--turquoise-soft); border-color:#7be9de }
+  .panel-head{ padding:18px; text-align:center; font-weight:900; font-size:1.25rem }
+  .panel--bad .panel-head{ color:var(--pink-ink) }
+  .panel--good .panel-head{ color:var(--turquoise-ink) }
+  .panel-body{ padding:16px 18px }
+  .panel-body li{ list-style:none; margin:10px 0; padding-left:0 }
+  .panel ul{margin:0; padding:0}
+
+  /* CTA/Oferta */
+  .offer-card{
+    background: linear-gradient(180deg, #fff 0%, var(--pink-soft) 100%);
+    border: 1px solid #FAD9E4; border-radius: 20px; padding: 24px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  }
+  .offer-head{ display:flex; flex-direction:column; gap:6px; margin-bottom:12px; }
+  .offer-head .title{ font-size: clamp(22px, 3.2vw, 30px); line-height:1.2; margin:0; }
+  .offer-head .subtitle{ color: var(--muted); margin:0 }
+  .offer-grid{ display:grid; grid-template-columns:1fr; gap:18px; align-items:start; }
+  @media(min-width:900px){ .offer-grid{ grid-template-columns:1.3fr .9fr } }
+  .offer-features{ background:#fff; border:1px solid #F5E3EA; border-radius:16px; padding:16px; }
+  .offer-features .item{
+    display:flex; gap:10px; align-items:flex-start; background:#fff; border:1px solid #F1F5F9; border-radius:12px;
+    padding:10px 12px; margin-bottom:10px;
+  }
+  .offer-features .item:last-child{ margin-bottom:0 }
+  .offer-features .check{ font-weight:900; color:var(--turquoise-ink) }
+
+  .offer-pricebox{
+    background:#fff; border:1px solid #FAD9E4; border-radius:16px; padding:18px;
+    box-shadow: 0 6px 18px rgba(244,163,184,.18);
+  }
+  .offer-pricebox .price{ font-weight:800; margin-bottom:2px; color:#191b1f; font-size: clamp(26px, 4vw, 34px); }
+  .offer-pricebox .price .small{ font-weight:600; font-size:.9rem; color:#c03f6b; }
+  .offer-pricebox .note{ color:var(--muted); margin:6px 0 14px }
+  .offer-pricebox .btn{ width:100%; text-align:center }
+  .offer-pricebox .secure{ color:#60708a; font-size:.85rem; margin-top:10px; text-align:center }
+
+  /* Garantia + selo */
+  .guarantee{display:grid; grid-template-columns:1fr; gap:18px; align-items:center}
+  @media(min-width:900px){.guarantee{grid-template-columns:1.2fr .8fr}}
+  .seal-wrap{ background:var(--pink-soft); border:1px solid #FAD9E4; border-radius:16px; padding:16px; display:flex; align-items:center; justify-content:center; }
+  .seal{width:100%; max-width:360px; height:auto; display:block}
+
+  /* Dados / estatísticas (se quiser usar depois) */
+  .data-grid{ display:grid; grid-template-columns:1fr; gap:18px; margin-top:22px; }
+  @media(min-width:720px){.data-grid{grid-template-columns:1fr 1fr}}
+  .data-card{ background:#fff; border:1px solid #E7EEF5; border-radius:16px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,.04); text-align:left; }
+  .data-number{ font-size:clamp(36px,5vw,54px); font-weight:900; color:var(--turquoise); margin-bottom:6px; }
+  .data-card p{ margin:0; font-size:1rem; line-height:1.4; }
+  .data-source{ display:block; margin-top:8px; font-size:.85rem; color:#6b7280; font-style:italic; }
+
+  /* Pilares (imagem + texto) */
+  .pillars2 { padding: 36px 0; }
+  .pillars2 h2 { font-size:clamp(22px,3.5vw,32px); margin:0 0 14px; }
+  .pillar-row{ display:grid; grid-template-columns:1fr; gap:20px; align-items:center; margin:26px 0; }
+  @media(min-width:980px){ .pillar-row{ grid-template-columns:1.05fr .95fr } .pillar-row.reverse{ grid-template-columns:.95fr 1.05fr } }
+  .pillar-img{ width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:16px; background:#f2f6f8; border:1px solid #E7EEF5; box-shadow:0 6px 18px rgba(0,0,0,.05); }
+  .pillar-text h3{ margin:0 0 6px; font-size:clamp(18px,2.6vw,24px) }
+  .pillar-text p{ margin:0; color:var(--muted) }
+  .pillars-note{ color:var(--muted); margin-top:6px; font-size:.92rem }
+  .pillar-list{ display:grid; gap:8px; margin-top:10px }
+  .pillar-li{ display:flex; gap:10px; align-items:flex-start }
+  .pillar-li::before{ content:"•"; color:var(--turquoise); font-weight:900 }
+
+  /* FAQ acordeão */
+  .faq{ border:1px solid #EEF2F7; border-radius:14px; overflow:hidden; background:#fff; }
+  .faq-item{ border-top:1px solid #EEF2F7; }
+  .faq-item:first-child{ border-top:0; }
+  .faq-q{
+    width:100%; text-align:left; background:#fff; border:0; padding:20px 24px;
+    font-size:clamp(18px,2.5vw,21px); font-weight:700; color:#0b2239; cursor:pointer; display:flex; align-items:center; justify-content:space-between;
+    transition: background .25s ease, color .25s ease;
+  }
+  .faq-q:hover{ background:#f8fdfc; color:#09204a }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s ease; padding:0 24px; color:#444; font-size:clamp(16px,2.2vw,18px); line-height:1.6; background:#f9fbfc; }
+  .faq-item.open .faq-a{ max-height:280px; padding:0 24px 18px 24px; }
+  .faq-icon{ transition:transform .25s ease; }
+  .faq-item.open .faq-icon{ transform: rotate(180deg); }
+
+  /* Faixa/gradiente e utilidades */
+  .band{ background:var(--grad); padding:8px 0; border-top:1px solid #eef2f7; border-bottom:1px solid #eef2f7 }
+  .bg-grad{ background:var(--grad); border-top:1px solid #eef2f7; border-bottom:1px solid #eef2f7; }
+
+  /* Autor */
+  .about{display:grid; grid-template-columns:1fr; gap:18px; align-items:center}
+  @media(min-width:900px){.about{grid-template-columns:1.1fr .9fr}}
+  .about-img{width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:16px; background:#e9eef3}
+  .about-img.sem-moldura{ aspect-ratio:auto !important; object-fit:contain !important; background:transparent !important; border:0 !important; box-shadow:none !important; border-radius:0 !important; width:100% !important; max-width:300px; display:block; margin:0 auto; }
+  @media(min-width:900px){ .about-img.sem-moldura{ max-width:400px } }
+
+  /* Depoimentos (mesmo da mentoria) */
+  .depoimentos img { width:100%; height:auto; object-fit:contain; background:transparent; border:0; box-shadow:none; border-radius:0; }
+
+  /* Rodapé */
+  .footer{
+    background: linear-gradient(180deg, #FDF7FA 0%, #F8FEFC 100%);
+    border-top: 1px solid #E7EEF5; padding: 28px 0; text-align: center; font-size: 0.95rem; color: #4B4B4B;
+  }
+  .footer a { color: var(--turquoise-ink); text-decoration: none; font-weight: 600; }
+  .footer a:hover { text-decoration: underline; }
+  .footer-links{ margin-top:6px; font-size:0.9rem; color:#555; }
+
+  /* WhatsApp flutuante */
+  .whatsapp-float {
+    position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
+    background: #25D366; color: white; font-size: 30px; text-align: center; border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); z-index: 1000; display: flex; align-items: center; justify-content: center;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%{transform:scale(1)} 50%{transform:scale(1.1)} 100%{transform:scale(1)} }
+  .whatsapp-float:hover { background:#20b955; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-top">
+      <img class="logo" src="logo-calma.png" alt="Método C.A.L.M.A." />
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <h1>Manual do Emagrecimento Sustentável</h1>
+        <p class="sub"><strong>Emagreça de forma definitiva.</strong> Sem dietas radicais, sem culpa e sem o efeito sanfona.</p>
+
+        <div class="divider"></div>
+
+        <p style="font-size:1.05rem"><strong>🧠 “Você não precisa de mais uma dieta. Precisa de um novo jeito de pensar.”</strong></p>
+        <p class="muted">
+          Quantas vezes você começou cheia de motivação, perdeu alguns quilos… e depois tudo voltou?<br/>
+          Você não falhou. O problema nunca foi você — foi o método.
+        </p>
+        <p class="muted">
+          O <strong>Manual do Emagrecimento Sustentável</strong> te ensina a emagrecer de verdade,
+          entendendo suas emoções, reconstruindo hábitos e criando uma relação leve e permanente com a comida e com o seu corpo.
+        </p>
+
+        <div class="hero-cta">
+          <a id="checkout" href="#" class="btn btn-pink">🔘 Quero o Manual por R</a>
+          <span class="badge">Acesso imediato + garantia 7 dias</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="band"></div>
+
+<!-- O QUE VAI DESCOBRIR -->
+<section class="section">
+  <div class="container">
+    <h2>🌟 O que você vai descobrir ao ler o Manual</h2>
+    <div class="blocks">
+      <div class="block"><div class="emoji">❌</div><div><p class="t"><strong>Por que todas as dietas que você tentou falharam</strong> (e como mudar isso de vez)</p></div></div>
+      <div class="block"><div class="emoji">🧠</div><div><p class="t"><strong>Como controlar a fome emocional</strong> e parar de comer por ansiedade</p></div></div>
+      <div class="block"><div class="emoji">🍽️</div><div><p class="t"><strong>O método simples para montar refeições equilibradas</strong> sem pesar nada</p></div></div>
+      <div class="block"><div class="emoji">⏰</div><div><p class="t"><strong>Como criar hábitos saudáveis que duram para sempre</strong>, mesmo com rotina corrida</p></div></div>
+      <div class="block"><div class="emoji">💗</div><div><p class="t"><strong>Como se libertar da culpa</strong> e voltar a sentir prazer em comer</p></div></div>
+      <div class="block"><div class="emoji">🏋️</div><div><p class="t"><strong>Por que o treino certo não é o mais pesado</strong>, e sim o mais possível</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM É -->
+<section class="section alt">
+  <div class="container">
+    <h2>🚺 Este manual é para você que…</h2>
+    <div class="blocks">
+      <div class="block"><div class="emoji">🔁</div><div><p class="t">Já tentou de tudo e sempre volta ao ponto de partida</p></div></div>
+      <div class="block"><div class="emoji">😓</div><div><p class="t">Vive entre a culpa e o “já que errei, vou comer tudo”</p></div></div>
+      <div class="block"><div class="emoji">🧘</div><div><p class="t">Sente que falta força de vontade — quando o que falta é leveza</p></div></div>
+      <div class="block"><div class="emoji">🌿</div><div><p class="t">Quer emagrecer de forma natural, sem tortura e sem pressa</p></div></div>
+      <div class="block"><div class="emoji">🔍</div><div><p class="t">Está cansada de dietas prontas e quer entender o próprio corpo</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA O MÉTODO (5 pilares) -->
+<section class="pillars2">
+  <div class="container">
+    <h2>⚙️ Como funciona o método</h2>
+    <p class="muted">O Manual é baseado em <strong>5 pilares poderosos</strong>, que se encaixam como peças de um quebra-cabeça:</p>
+
+    <div class="pillar-row">
+      <img class="pillar-img" src="pilar1.jpg" alt="Mente e Emoções">
+      <div class="pillar-text">
+        <h3>1️⃣ Mente e Emoções</h3>
+        <p>Entenda a fome emocional e quebre padrões de autossabotagem.</p>
+      </div>
+    </div>
+
+    <div class="pillar-row reverse">
+      <div class="pillar-text">
+        <h3>2️⃣ Nutrição Inteligente</h3>
+        <p>Coma com prazer e consciência, sem terrorismo alimentar.</p>
+      </div>
+      <img class="pillar-img" src="pilar2.jpg" alt="Nutrição Inteligente">
+    </div>
+
+    <div class="pillar-row">
+      <img class="pillar-img" src="pilar3.jpg" alt="Movimento que Liberta">
+      <div class="pillar-text">
+        <h3>3️⃣ Movimento que Liberta</h3>
+        <p>Descubra o exercício que você realmente gosta (e mantém).</p>
+      </div>
+    </div>
+
+    <div class="pillar-row reverse">
+      <div class="pillar-text">
+        <h3>4️⃣ Sono, Estresse e Hormônios</h3>
+        <p>Cuide do corpo invisível que impede o progresso.</p>
+      </div>
+      <img class="pillar-img" src="pilar4.jpg" alt="Sono, Estresse e Hormônios">
+    </div>
+
+    <div class="pillar-row">
+      <img class="pillar-img" src="pilar5.jpg" alt="Consistência Gentil">
+      <div class="pillar-text">
+        <h3>5️⃣ Consistência Gentil</h3>
+        <p>Aprenda a manter o resultado sem precisar “recomeçar”.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O QUE RECEBE + BÔNUS -->
+<section class="section alt">
+  <div class="container">
+    <h2>🎁 O que você recebe ao adquirir o Manual</h2>
+
+    <div class="receive-grid">
+      <div class="receive-card">
+        <div class="receive-icon">📘</div>
+        <div class="receive-text"><strong>Produto principal:</strong> Manual do Emagrecimento Sustentável — linguagem leve, exemplos práticos e exercícios simples para transformar sua relação com o corpo e a comida.</div>
+      </div>
+      <div class="receive-card">
+        <div class="receive-icon">🍎</div>
+        <div class="receive-text"><strong>Bônus 1:</strong> App Gerador de Lanches Saudáveis — escolha doce/salgado/rápido e receba sugestões instantâneas.</div>
+      </div>
+      <div class="receive-card">
+        <div class="receive-icon">💪</div>
+        <div class="receive-text"><strong>Bônus 2:</strong> App Gerador de Treinos Rápidos — treinos de 5 a 30 min para qualquer espaço.</div>
+      </div>
+      <div class="receive-card">
+        <div class="receive-icon">🧠</div>
+        <div class="receive-text"><strong>Bônus 3:</strong> App “Qual o seu Nível de Compulsão” — teste com 10 perguntas + mini plano de ação.</div>
+      </div>
+      <div class="receive-card">
+        <div class="receive-icon">🍲</div>
+        <div class="receive-text"><strong>Bônus 4:</strong> Ebook de Receitas Saudáveis — receitas simples e gostosas, sem terrorismo nutricional.</div>
+      </div>
+      <div class="receive-card">
+        <div class="receive-icon">💰</div>
+        <div class="receive-text"><strong>Preço:</strong> De <s>R,00</s> por <strong>R,00</strong> · Acesso imediato + garantia total de 7 dias.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="section">
+  <div class="container">
+    <div class="guarantee">
+      <div>
+        <h2>🛡️ Garantia incondicional de 7 dias</h2>
+        <p>Se por qualquer motivo você não amar o conteúdo, basta enviar uma mensagem dentro de 7 dias e recebe <strong>100% do seu dinheiro de volta</strong>. Sem burocracia, sem letra miúda, sem julgamentos. <br><strong>👉 O risco é zero. A decisão é sua.</strong></p>
+        <p><a href="#checkout" class="btn btn-pink">Quero garantir por R</a></p>
+      </div>
+      <div class="seal-wrap" aria-hidden="true">
+        <svg class="seal" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F9A9BF"/><stop offset="100%" stop-color="#F7C3D1"/></linearGradient></defs>
+          <circle cx="200" cy="200" r="180" fill="url(#g)"/>
+          <circle cx="200" cy="200" r="135" fill="none" stroke="#ffffff" stroke-opacity=".5" stroke-width="18"/>
+          <circle cx="200" cy="200" r="88" fill="#fff" opacity=".96"/>
+          <path d="M160 200 l30 30 58-68" fill="none" stroke="#E0527C" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="200" y="72" text-anchor="middle" fill="#7c2944" font-size="24" font-weight="700">GARANTIA DE SATISFAÇÃO</text>
+          <text x="200" y="350" text-anchor="middle" fill="#7c2944" font-size="20" font-weight="700">MÉTODO C.A.L.M.A.</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS (igual da mentoria) -->
+<section class="section">
+  <div class="container">
+    <h2>💬 Resultados reais de mulheres reais</h2>
+    <div class="grid-3 depoimentos" style="margin-top:20px">
+      <img class="card-img" src="depo1.jpg" alt="Depoimento de aluna" />
+      <img class="card-img" src="depo2.jpg" alt="Antes e depois 1" />
+      <img class="card-img" src="depo3.jpg" alt="Antes e depois 2" />
+      <img class="card-img" src="depo4.jpg" alt="Antes e depois 3" />
+      <img class="card-img" src="depo5.jpg" alt="Antes e depois 4" />
+      <img class="card-img" src="depo7.jpg" alt="Antes e depois 5" />
+      <img class="card-img" src="depo8.jpg" alt="Antes e depois 6" />
+      <img class="card-img" src="depo9.jpg" alt="Antes e depois 7" />
+      <img class="card-img" src="depo10.jpg" alt="Antes e depois 8" />
+      <img class="card-img" src="depo11.jpg" alt="Antes e depois 9" />
+      <img class="card-img" src="depo12.jpg" alt="Antes e depois 10" />
+      <img class="card-img" src="depo6.jpg" alt="Antes e depois 11" />
+    </div>
+  </div>
+</section>
+
+<!-- ARGUMENTOS INCONTESTÁVEIS -->
+<section class="section alt">
+  <div class="container">
+    <h2>📊 Por que este método é lógico e impossível de ignorar</h2>
+    <div class="blocks">
+      <div class="block"><div class="emoji">🧠</div><div><p class="t"><strong>Neurociência:</strong> 90% dos comportamentos alimentares são emocionais. Trabalhar só o corpo é atuar em 10% do problema. O Manual trabalha os 100%.</p></div></div>
+      <div class="block"><div class="emoji">🧪</div><div><p class="t"><strong>O cérebro resiste à restrição:</strong> dietas severas ativam o “modo sobrevivência” e aumentam grelina. O Manual ensina a trabalhar com o corpo, não contra ele.</p></div></div>
+      <div class="block"><div class="emoji">♾️</div><div><p class="t"><strong>Sustentável:</strong> enquanto dietas têm data pra acabar, o aprendizado vira estilo de vida. Estudos de comportamento alimentar (Yale) apontam nessa direção.</p></div></div>
+      <div class="block"><div class="emoji">💸</div><div><p class="t"><strong>Preço racional:</strong> R é menos que um delivery — e pode mudar sua relação com a comida para sempre.</p></div></div>
+      <div class="block"><div class="emoji">✅</div><div><p class="t"><strong>Garantia total:</strong> ou ajuda você, ou devolvemos seu dinheiro.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DORES & DESEJOS -->
+<section class="section">
+  <div class="container">
+    <h2>🔹 Dores e desejos</h2>
+    <div class="grid-3">
+      <div class="card"><div class="card-body">
+        <h3 class="kicker">O que você quer parar de sentir</h3>
+        <ul class="list" style="margin-top:10px">
+          <li class="li">Culpa depois de comer</li>
+          <li class="li">Frustração por recomeçar mil vezes</li>
+          <li class="li">Vergonha do espelho</li>
+          <li class="li">Raiva de si mesma por “não conseguir”</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="kicker">O que você quer começar a viver</h3>
+        <ul class="list" style="margin-top:10px">
+          <li class="li">Paz com a comida</li>
+          <li class="li">Confiança no espelho</li>
+          <li class="li">Energia e autoestima</li>
+          <li class="li">Liberdade e equilíbrio</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <h3 class="kicker">A verdade simples</h3>
+        <p class="muted">Dieta nenhuma dura para sempre. Mas equilíbrio dura. Quem tenta, briga com o corpo. Quem entende, aprende a cuidar dele.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARATIVO DIRETO -->
+<section class="section" style="background:linear-gradient(180deg,#fff 0%, #F7FFFE 100%);">
+  <div class="container">
+    <h2>🧩 Comparativo direto</h2>
+    <div class="compare" style="margin-top:14px">
+      <div class="panel panel--bad">
+        <div class="panel-head">❌ Dietas Restritivas</div>
+        <div class="panel-body">
+          <ul>
+            <li>Foca apenas em restrição</li>
+            <li>Ignora mente e emoções</li>
+            <li>Não se mantém para sempre</li>
+            <li>Não ensina liberdade alimentar</li>
+            <li>Sem apps práticos e receitas</li>
+            <li>Custa caro a longo prazo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel--good">
+        <div class="panel-head">✅ Manual do Emagrecimento Sustentável</div>
+        <div class="panel-body">
+          <ul>
+            <li>Trabalha mente e emoções</li>
+            <li>Pode ser mantido para sempre</li>
+            <li>Ensina liberdade alimentar</li>
+            <li>Inclui apps práticos e receitas</li>
+            <li>Custa menos que uma pizza</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUEM É DIOGO (igual da mentoria) -->
+<section class="section bg-grad">
+  <div class="container">
+    <div class="about">
+      <img class="about-img sem-moldura" src="autor.jpg" alt="Foto de Diogo Jebe">
+      <div>
+        <h2>Quem é Diogo Jebe</h2>
+        <p>Educador Físico há 15 anos, acreditava que o segredo do emagrecimento estava na dieta perfeita e no treino certo — até perceber que o problema não era o corpo, era a mente.</p>
+        <p class="muted">Depois de mergulhar em psicologia do emagrecimento, PNL e comportamento humano, desenvolveu junto com uma psicóloga o <strong>Método C.A.L.M.A.</strong>, que já transformou a vida de mais de 120 mulheres.</p>
+        <p>Hoje, a missão é ajudar mulheres cansadas de recomeçar a se libertarem da culpa, da ansiedade e do efeito sanfona — com leveza, autoestima e equilíbrio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ RÁPIDO -->
+<section class="section alt">
+  <div class="container">
+    <h2>💬 FAQ rápido</h2>
+    <div class="faq" id="faq">
+      <div class="faq-item">
+        <button class="faq-q">O eBook é impresso ou digital?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Totalmente digital (PDF). Acesse no celular, computador ou tablet quando quiser.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Preciso seguir uma dieta específica?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Não. Você aprende a entender seu corpo, emoções e fome real para construir equilíbrio — sem restrições extremas.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">É preciso fazer academia?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Não. O bônus “Gerador de Treinos Rápidos” foi feito para treinar em casa, viagem ou onde preferir.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como recebo o eBook e os bônus?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Após o pagamento, você recebe automaticamente um e-mail com o link de acesso ao Manual e aos bônus.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Funciona para qualquer idade?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Sim. O método é pensado para mulheres de 27 a 50 anos, adaptável à sua rotina.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se eu não gostar do conteúdo?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.5 5 8.5h14Z"/></svg>
+        </button>
+        <div class="faq-a">Garantia incondicional de 7 dias: peça reembolso em 1 clique, sem burocracia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section" style="background:var(--grad);">
+  <div class="container center">
+    <h2>🔘 Pronta pra fazer as pazes com a comida — e com você?</h2>
+    <p><strong>R,00</strong> · Acesso imediato · Garantia total de 7 dias</p>
+    <a href="#checkout" class="btn btn-pink">Quero começar agora</a>
+    <p class="muted small" style="margin-top:10px">Preço promocional por tempo limitado.</p>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer class="footer">
+  <div class="container">
+    <p>© <span id="year"></span> Método C.A.L.M.A. · Todos os direitos reservados</p>
+    <p class="footer-links">
+      <a href="#topo">Voltar ao topo</a> · 
+      <a href="https://www.metodocalma.com" target="_blank" rel="noopener">Site oficial</a> · 
+      <a href="mailto:contato@metodocalma.com">Contato</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Atualiza ano -->
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- FAQ acordeão -->
+<script>
+  document.querySelectorAll('.faq-item .faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+<!-- WhatsApp flutuante -->
+<a href="https://wa.me/5521988170913?text=Oi! Quero o Manual do Emagrecimento Sustent%C3%A1vel" 
+   class="whatsapp-float" target="_blank" rel="noopener" aria-label="Abrir WhatsApp">
+  <svg viewBox="0 0 24 24" width="40" height="40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.47-.149-.669.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.205-.242-.583-.487-.504-.669-.513l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.718 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.617h-.003a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.997-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.896a9.825 9.825 0 012.897 6.994c-.003 5.45-4.437 9.884-9.889 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.095.547 4.142 1.588 5.945L0 24l6.305-1.654a11.86 11.86 0 005.732 1.459h.005c6.554 0 11.889-5.335 11.892-11.893a11.82 11.82 0 00-3.486-8.413" />
+  </svg>
+</a>
+
+</body>
+</html>
